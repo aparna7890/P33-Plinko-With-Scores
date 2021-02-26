@@ -63,6 +63,11 @@ function draw() {
   text("100", 262, 520)
   text("500", 344, 520)
   text("1000", 415, 520)
+  
+  if(gameState === "end"){
+     textSize(30)
+     text("Game Over!", 160, 233)
+  }
 
   fill("yellow")
   box = rect(0, 470, 1000, 2)
@@ -78,43 +83,69 @@ function draw() {
    }
 
    //scoring
-   if(particle !== null){
+   if(particle != null){
       particle.display()
+      console.log("hi")
 
-      if(this.particle.body.position.y > 520){
+      if(particle.body.position.y > 500){
 
          if(particle.body.position.x > 0 && particle.body.position.x < 80){
             score = score + 1000
             particle = null;
-         }
-         if(particle.body.position.x > 80 && particle.body.position.x < 160){
-            score = score + 500
-            particle = null;
-         }
-         if(particle.body.position.x > 160 && particle.body.position.x < 240){
-            score = score + 100
-            particle = null;
-         }
-         if(particle.body.position.x > 240 && particle.body.position.x < 320){
-            score = score + 100
-            particle = null;
-         }
-         if(particle.body.position.x > 320 && particle.body.position.x < 400){
-            score = score + 500
-            particle = null;
-         }
-         if(particle.body.position.x > 400 && particle.body.position.x < 480){
-            score = score + 1000
-            particle = null;
+         if(turn >= 5){
+            gameState = "end"
          }
       }
-   }
+         
+         else if(particle.body.position.x > 80 && particle.body.position.x < 160){
+            score = score + 500
+            particle = null;
 
+            if(turn >= 5){
+               gameState = "end"
+            }
+         }
+         else if(particle.body.position.x > 160 && particle.body.position.x < 240){
+            score = score + 100
+            particle = null;
+
+            if(turn >= 5){
+               gameState = "end"
+            }
+         }
+         else if(particle.body.position.x > 240 && particle.body.position.x < 320){
+            score = score + 100
+            particle = null;
+
+            if(turn >= 5){
+               gameState = "end"
+            }
+         }
+         else if(particle.body.position.x > 320 && particle.body.position.x < 400){
+            score = score + 500
+            particle = null;
+
+            if(turn >= 5){
+               gameState = "end"
+            }
+         }
+         else if(particle.body.position.x > 400 && particle.body.position.x < 480){
+            score = score + 1000
+            particle = null;
+
+            if(turn >= 5){
+               gameState = "end"
+            }
+         }
+      }
+   }  
 }
 
 function mousePressed(){
    if(gameState !== "end"){
       turn++
       particle = new Particle(mouseX, 10, 10, 10)
+      console.log(mouseX)
    }
+   
 }
